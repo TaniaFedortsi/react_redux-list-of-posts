@@ -13,6 +13,7 @@ import { useAppDispatch, useAppSelector } from './app/hooks';
 import { setAuthor } from './features/authorSlice';
 import { clearPosts, loadPosts } from './features/postsSlice';
 import { setSelectedPost } from './features/selectedPostSlice';
+import { loadUsers } from './features/usersSlice';
 
 export const App: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -21,12 +22,16 @@ export const App: React.FC = () => {
   const { selectedPost } = useAppSelector(state => state.selectedPost);
 
   useEffect(() => {
+    dispatch(loadUsers());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(setSelectedPost(null));
 
     if (author) {
       dispatch(loadPosts(author.id));
     } else {
-      dispatch(clearPosts);
+      dispatch(clearPosts());
     }
   }, [author, dispatch]);
 

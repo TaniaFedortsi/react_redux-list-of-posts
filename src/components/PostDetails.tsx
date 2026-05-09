@@ -29,7 +29,6 @@ export const PostDetails: React.FC<Props> = ({ post }) => {
   const handleAddComment = async (data: CommentData) => {
     try {
       await dispatch(addComment({ ...data, postId: post.id })).unwrap();
-      setVisible(false);
     } catch (error) {}
   };
 

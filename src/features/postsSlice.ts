@@ -25,8 +25,9 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    clearPosts: (state, action) => {
-      state.items = action.payload;
+    clearPosts: state => {
+      state.items = [];
+      state.loaded = true;
     },
   },
   extraReducers: builder => {
